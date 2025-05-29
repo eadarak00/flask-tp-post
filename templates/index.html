@@ -2,13 +2,16 @@
 <html>
 <head><title>Formulaire</title></head>
 <body>
-    <h1>Entrez votre nom</h1>
-    {% if erreur %}
-        <p style="color:red;">{{ erreur }}</p>
-    {% endif %}
+    <h1>Formulaire Flask-WTF</h1>
     <form method="POST">
-        <input type="text" name="nom" placeholder="Votre nom">
-        <button type="submit">Envoyer</button>
+        {{ form.hidden_tag() }}
+        {{ form.nom.label }}<br>
+        {{ form.nom(size=30) }}<br>
+        {% if form.nom.errors %}
+            <span style="color:red;">{{ form.nom.errors[0] }}</span><br>
+        {% endif %}
+        <br>
+        {{ form.submit() }}
     </form>
 </body>
 </html>
